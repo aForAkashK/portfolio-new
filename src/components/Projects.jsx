@@ -4,22 +4,28 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: "E-Commerce Platform",
-        description: "A full-featured online store built with React, Node.js, and MongoDB. Includes payment integration and admin dashboard.",
-        tags: ["React", "Node.js", "MongoDB", "Stripe"],
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80"
+        title: "SecureKey",
+        description: "A secure password manager that stores all your credentials locally on your device. Features encrypted storage, biometric authentication, and a clean intuitive interface for managing passwords safely.",
+        tags: ["React Native", "AsyncStorage", "Encryption", "Biometrics"],
+        image: "/projects/securekey.png"
     },
     {
-        title: "Task Management App",
-        description: "A collaborative task manager with real-time updates using Socket.io and React.",
-        tags: ["React", "Socket.io", "Express", "Redux"],
-        image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&q=80"
+        title: "LinkSafe",
+        description: "A beautiful bookmark manager that stores your favorite links locally with an elegant UI. Organize links with categories, preview thumbnails, and quick search functionality.",
+        tags: ["React Native", "Local Storage", "Link Preview", "Categories"],
+        image: "/projects/linksafe.png"
     },
     {
-        title: "Weather Dashboard",
-        description: "A beautiful weather application providing detailed forecasts and historical data visualization.",
-        tags: ["React", "Chart.js", "OpenWeatherMap API"],
-        image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80"
+        title: "Groupify",
+        description: "A real-time group collaboration app for managing tasks and splitting expenses. Create groups, assign tasks with live updates, and track shared expenses like Splitwise.",
+        tags: ["React Native", "Firebase", "Real-time Sync", "Expense Tracking"],
+        image: "/projects/groupify.png"
+    },
+    {
+        title: "Dear Future",
+        description: "Write heartfelt messages to be delivered in the future. Schedule letters to yourself or loved ones, and receive them on special dates with beautiful notification experiences.",
+        tags: ["React Native", "Firebase", "Push Notifications", "Scheduling"],
+        image: "/projects/dearfuture.png"
     }
 ];
 

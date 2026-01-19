@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 
 const Contact = () => {
     const [formState, setFormState] = useState({
@@ -8,11 +8,52 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+    const [statusMessage, setStatusMessage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form submitted:', formState);
+        setStatus('loading');
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: 'c3700df6-1b72-4dfb-862e-c847af1c7036',
+                    name: formState.name,
+                    email: formState.email,
+                    message: formState.message,
+                    subject: `Portfolio Contact from ${formState.name}`,
+                    from_name: 'Portfolio Website'
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setStatus('success');
+                setStatusMessage('Thank you! Your message has been sent successfully.');
+                setFormState({ name: '', email: '', message: '' });
+                // Reset status after 5 seconds
+                setTimeout(() => {
+                    setStatus('idle');
+                    setStatusMessage('');
+                }, 5000);
+            } else {
+                throw new Error(result.message || 'Something went wrong');
+            }
+        } catch (error) {
+            setStatus('error');
+            setStatusMessage('Oops! Something went wrong. Please try again.');
+            setTimeout(() => {
+                setStatus('idle');
+                setStatusMessage('');
+            }, 5000);
+        }
     };
 
     const handleChange = (e) => {
@@ -52,7 +93,7 @@ const Contact = () => {
                                 <div className="contact-icon"><Phone size={20} /></div>
                                 <div>
                                     <h4>Phone</h4>
-                                    <a href="tel:+1234567890">+91 82092*****</a>
+                                    <a href="tel:+918209200000">+91 82092*****</a>
                                 </div>
                             </div>
                             <div className="contact-item">
@@ -84,6 +125,7 @@ const Contact = () => {
                                 required
                                 className="form-input"
                                 placeholder="Enter your name"
+                                disabled={status === 'loading'}
                             />
                         </div>
                         <div className="form-group">
@@ -97,6 +139,7 @@ const Contact = () => {
                                 required
                                 className="form-input"
                                 placeholder="Enter your email"
+                                disabled={status === 'loading'}
                             />
                         </div>
                         <div className="form-group">
@@ -110,10 +153,37 @@ const Contact = () => {
                                 className="form-input form-textarea"
                                 placeholder="Tell me about your project..."
                                 rows="5"
+                                disabled={status === 'loading'}
                             ></textarea>
                         </div>
-                        <button type="submit" className="submit-btn">
-                            Send Message <Send size={18} />
+
+                        {/* Status Message */}
+                        {statusMessage && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`form-status ${status}`}
+                            >
+                                {status === 'success' && <CheckCircle size={18} />}
+                                {status === 'error' && <AlertCircle size={18} />}
+                                <span>{statusMessage}</span>
+                            </motion.div>
+                        )}
+
+                        <button
+                            type="submit"
+                            className="submit-btn"
+                            disabled={status === 'loading'}
+                        >
+                            {status === 'loading' ? (
+                                <>
+                                    <Loader size={18} className="spin" /> Sending...
+                                </>
+                            ) : (
+                                <>
+                                    Send Message <Send size={18} />
+                                </>
+                            )}
                         </button>
                     </motion.form>
                 </div>
@@ -123,3 +193,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

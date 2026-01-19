@@ -27,9 +27,9 @@ const Hero = () => {
                             View Projects <ArrowRight size={20} />
                         </a>
                         <div className="social-links">
-                            <a href="#" className="social-link"><Github size={24} /></a>
+                            <a target='_blank' href="https://github.com/aForAkashK" className="social-link"><Github size={24} /></a>
                             <a target='_blank' href="https://www.linkedin.com/in/akash-kumar-4b42541b2" className="social-link "><Linkedin size={24} /></a>
-                            <a href="mailto:mailmeatakashkr@gmail.com" className="social-link"><Mail size={24} /></a>
+                            <a target='_blank' href="mailto:mailmeatakashkr@gmail.com" className="social-link"><Mail size={24} /></a>
                         </div>
                     </div>
                 </motion.div>

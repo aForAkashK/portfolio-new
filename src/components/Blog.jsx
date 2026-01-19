@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Blog = () => {
     const [posts, setPosts] = React.useState([]);
@@ -50,6 +51,10 @@ const Blog = () => {
         fetchPosts();
     }, []);
 
+    // Only show first 3 articles
+    const displayPosts = posts.slice(0, 3);
+    const hasMorePosts = posts.length > 3;
+
     if (loading) {
         return (
             <section id="blog" className="section">
@@ -68,34 +73,49 @@ const Blog = () => {
                 {posts.length === 0 ? (
                     <div className="text-center text-secondary">No articles found. Check back soon!</div>
                 ) : (
-                    <div className="blog-grid">
-                        {posts.map((post, index) => (
-                            <motion.article
-                                key={post.id}
+                    <>
+                        <div className="blog-grid">
+                            {displayPosts.map((post, index) => (
+                                <motion.article
+                                    key={post.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="glass-card blog-card"
+                                >
+                                    <div className="blog-image-container">
+                                        <img src={post.image} alt={post.title} className="blog-image" />
+                                        <span className="blog-category">{post.category}</span>
+                                    </div>
+                                    <div className="blog-content">
+                                        <div className="blog-meta">
+                                            <span className="blog-date"><Calendar size={14} /> {post.date}</span>
+                                            <span className="blog-author"><User size={14} /> {post.author}</span>
+                                        </div>
+                                        <h3 className="blog-title">{post.title}</h3>
+                                        <p className="blog-excerpt">{post.excerpt}</p>
+                                        <a href={post.link} target="_blank" rel="noopener noreferrer" className="blog-link">
+                                            Read More <ArrowRight size={16} />
+                                        </a>
+                                    </div>
+                                </motion.article>
+                            ))}
+                        </div>
+                        {hasMorePosts && (
+                            <motion.div
+                                className="see-more-container"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
                                 viewport={{ once: true }}
-                                className="glass-card blog-card"
                             >
-                                <div className="blog-image-container">
-                                    <img src={post.image} alt={post.title} className="blog-image" />
-                                    <span className="blog-category">{post.category}</span>
-                                </div>
-                                <div className="blog-content">
-                                    <div className="blog-meta">
-                                        <span className="blog-date"><Calendar size={14} /> {post.date}</span>
-                                        <span className="blog-author"><User size={14} /> {post.author}</span>
-                                    </div>
-                                    <h3 className="blog-title">{post.title}</h3>
-                                    <p className="blog-excerpt">{post.excerpt}</p>
-                                    <a href={post.link} target="_blank" rel="noopener noreferrer" className="blog-link">
-                                        Read More <ArrowRight size={16} />
-                                    </a>
-                                </div>
-                            </motion.article>
-                        ))}
-                    </div>
+                                <Link to="/articles" className="btn btn-primary see-more-btn">
+                                    See More Articles <ArrowRight size={18} />
+                                </Link>
+                            </motion.div>
+                        )}
+                    </>
                 )}
             </div>
         </section>
