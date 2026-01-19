@@ -42,9 +42,9 @@ const Navbar = ({ toggleTheme, isDark }) => {
                     <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
                         {isDark ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
-                    <button className="resume-btn">
+                    <a href="/Akash_resume.pdf" download className="resume-btn">
                         Resume <Download size={16} />
-                    </button>
+                    </a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -77,9 +77,9 @@ const Navbar = ({ toggleTheme, isDark }) => {
                                 {link.name}
                             </a>
                         ))}
-                        <button className="resume-btn mobile-resume-btn">
+                        <a href="/Akash_resume.pdf" download className="resume-btn mobile-resume-btn">
                             Resume <Download size={16} />
-                        </button>
+                        </a>
                     </motion.div>
                 )}
             </AnimatePresence>

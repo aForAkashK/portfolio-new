@@ -84,8 +84,9 @@ function App() {
           </Routes>
         </main>
         <footer className="footer">
+          {/* //suggest a small change in footer */}
           <div className="container">
-            <p>© {new Date().getFullYear()} Portfolio. Built with React & Framer Motion.</p>
+            <p>© {new Date().getFullYear()} Portfolio. Built with ❤️ by Akash Kumar</p>
           </div>
         </footer>
       </div>
