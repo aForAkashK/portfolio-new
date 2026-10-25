@@ -53,14 +53,13 @@ const Blog = () => {
 
     // Only show first 3 articles
     const displayPosts = posts.slice(0, 3);
-    const hasMorePosts = posts.length > 3;
 
     if (loading) {
         return (
             <section id="blog" className="section">
                 <div className="container">
                     <h2 className="section-title">Latest <span className="gradient-text">Articles</span></h2>
-                    <div className="text-center text-secondary">Loading articles...</div>
+                    <div className="text-center text-secondary">Loading articles... <Link to="/articles">Browse articles →</Link></div>
                 </div>
             </section>
         );
@@ -71,14 +70,14 @@ const Blog = () => {
             <div className="container">
                 <h2 className="section-title">Latest <span className="gradient-text">Articles</span></h2>
                 {posts.length === 0 ? (
-                    <div className="text-center text-secondary">No articles found. Check back soon!</div>
+                    <div className="text-center text-secondary">Read my writing on <a href="https://medium.com/@akash_kr." target="_blank" rel="noopener noreferrer">Medium</a> or <Link to="/articles">browse the articles page</Link>.</div>
                 ) : (
                     <>
                         <div className="blog-grid">
                             {displayPosts.map((post, index) => (
                                 <motion.article
                                     key={post.id}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     viewport={{ once: true }}
@@ -102,10 +101,10 @@ const Blog = () => {
                                 </motion.article>
                             ))}
                         </div>
-                        {hasMorePosts && (
+                        {(
                             <motion.div
                                 className="see-more-container"
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.3 }}
                                 viewport={{ once: true }}

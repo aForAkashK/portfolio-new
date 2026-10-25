@@ -69,7 +69,7 @@ const Contact = () => {
                 <h2 className="section-title">Get In <span className="gradient-text">Touch</span></h2>
                 <div className="contact-container">
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
@@ -107,7 +107,7 @@ const Contact = () => {
                     </motion.div>
 
                     <motion.form
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}

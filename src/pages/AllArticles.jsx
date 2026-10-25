@@ -70,7 +70,7 @@ const AllArticles = () => {
                         <span>Back to Home</span>
                     </Link>
                     <h1 className="page-title">All <span className="gradient-text">Articles</span></h1>
-                    <p className="page-subtitle">Explore my thoughts on tech, development, and more</p>
+                    <p className="page-subtitle">Articles by Akash Kumar on web development, mobile apps, and software engineering. <a href="https://medium.com/@akash_kr." target="_blank" rel="noopener noreferrer">Read on Medium ↗</a></p>
                 </motion.div>
 
                 {loading ? (

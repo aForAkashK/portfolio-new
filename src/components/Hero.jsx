@@ -7,19 +7,19 @@ const Hero = () => {
         <section id="home" className="hero-section">
             <div className="container hero-content">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="hero-text"
                 >
                     <span className="hero-badge">Available for work</span>
                     <h1 className="hero-title">
-                        Building Digital <br />
-                        <span className="gradient-text">Experiences</span>
+                        Akash Kumar <br />
+                        <span className="gradient-text">Full Stack &amp; React Native Developer</span>
                     </h1>
                     <p className="hero-subtitle">
-                        I'm a Full Stack Developer specializing in building exceptional digital experiences.
-                        Currently focused on building accessible, human-centered products.
+                        I build web and mobile applications with React, React Native, Next.js, and Node.js.
+                        Explore my work, including Dear Future, SecureKey, and the Rulebreaker arcade.
                     </p>
 
                     <div className="hero-actions">

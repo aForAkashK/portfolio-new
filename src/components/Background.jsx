@@ -32,14 +32,14 @@ const Background = () => {
     }, []);
 
     return (
-        <div className="background-container">
+        <div className="background-container" aria-hidden="true">
             {/* Dynamic Gradient Background */}
             <div
                 className="mesh-gradient"
                 style={{
                     background: `
             radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, var(--accent-primary) 0%, transparent 20%),
-            radial-gradient(circle at ${window.innerWidth - mousePosition.x}px ${window.innerHeight - mousePosition.y}px, var(--accent-secondary) 0%, transparent 20%)
+            radial-gradient(circle at ${1200 - mousePosition.x}px ${800 - mousePosition.y}px, var(--accent-secondary) 0%, transparent 20%)
           `,
                     opacity: 0.15,
                     transition: 'background 0.2s ease'
@@ -81,8 +81,8 @@ const Background = () => {
                 <motion.div
                     key={index}
                     initial={{
-                        x: Math.random() * window.innerWidth,
-                        y: window.innerHeight + 100,
+                        x: (index * 173) % 1200,
+                        y: 900,
                         opacity: 0
                     }}
                     animate={{
@@ -90,15 +90,15 @@ const Background = () => {
                         opacity: [0, 0.8, 0.8, 0] // Increased opacity
                     }}
                     transition={{
-                        duration: 25 + Math.random() * 15, // Slower duration
+                        duration: 25 + (index * 7) % 15, // Slower duration
                         repeat: Infinity,
                         ease: "linear",
-                        delay: Math.random() * 20
+                        delay: (index * 3) % 20
                     }}
                     className="code-snippet"
                     style={{
-                        left: `${Math.random() * 90}%`,
-                        fontSize: `${1 + Math.random() * 0.5}rem`, // Slightly larger font
+                        left: `${(index * 17) % 90}%`,
+                        fontSize: `${1 + (index % 3) * 0.2}rem`, // Slightly larger font
                     }}
                 >
                     {snippet}

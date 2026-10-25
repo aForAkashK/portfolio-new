@@ -15,20 +15,20 @@ const Navbar = ({ toggleTheme, isDark }) => {
     }, []);
 
     const links = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Services', href: '#services' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Experience', href: '#experience' },
-        { name: 'Blog', href: '#blog' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '/#home' },
+        { name: 'About', href: '/#about' },
+        { name: 'Skills', href: '/#skills' },
+        { name: 'Services', href: '/#services' },
+        { name: 'Projects', href: '/#projects' },
+        { name: 'Experience', href: '/#experience' },
+        { name: 'Blog', href: '/#blog' },
+        { name: 'Contact', href: '/#contact' },
     ];
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container navbar-content">
-                <a href="#home" className="logo">
+                <a href="/#home" className="logo">
                     Port<span className="gradient-text">folio.</span>
                 </a>
 
